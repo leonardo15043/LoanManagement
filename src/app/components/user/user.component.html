@@ -1,3 +1,100 @@
-<p>
-  user works!
-</p>
+
+<div class="row animated fadeIn fast">
+    <div class="col-md-4 offset-md-4">
+
+        <div class="bg-white shadow-sm rounded p-6" *ngIf="step == 1">
+            <form (ngSubmit)="saveClient()" class="js-validate" [formGroup]="forma">
+                <div class="mb-4 text-center">
+                    <h2 class="h4">Registro de clientes</h2>
+                </div>
+
+                <div class="js-form-message mb-3">
+                  <input type="text" class="form-control" [(ngModel)]="user.name" name="name" [ngClass]="{'is-invalid': !forma.get('name').valid && press }" placeholder="Nombre" formControlName="name">
+                  <div class="invalid-feedback">
+                    El Nombre es requerido
+                  </div>
+                </div>
+                <div class="js-form-message mb-3">
+                  <input type="text" class="form-control" [(ngModel)]="user.lastname" name="lastname" [ngClass]="{'is-invalid': !forma.get('lastname').valid && press}" placeholder="Apellido" formControlName="lastname">
+                  <div class="invalid-feedback">
+                    El Apellido es requerido
+                  </div>
+                </div>
+
+                <div class="js-form-message mb-3">
+                  <input type="text" class="form-control" [(ngModel)]="user.identification" name="identification" [ngClass]="{'is-invalid': !forma.get('identification').valid && press}" placeholder="Identificación" formControlName="identification">
+                  <div class="invalid-feedback" *ngIf="forma.get('identification').errors?.required">
+                    La Identificación es requerida
+                  </div>
+                  <div class="invalid-feedback" *ngIf="forma.get('identification').errors?.pattern">
+                    La Identificación solo debe contener numeros
+                  </div>
+                </div>
+
+                <div class="js-form-message mb-3">
+                  <input type="date" class="form-control" min="{{ older | date:'yyyy-MM-dd' }}" [(ngModel)]="user.brithday" name="brithday" [ngClass]="{'is-invalid': !forma.get('brithday').valid && press}" placeholder="Fecha de Nacimiento" formControlName="brithday">
+                  <div class="invalid-feedback" *ngIf="forma.get('brithday').errors?.required">
+                   La fecha de nacimiento es obligatoria
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-block btn-primary">Siguiente</button>
+
+            </form>
+
+        </div>
+
+        <div class="bg-white rounded p-6" [ngClass]="{ 'd-lg-none': step }">
+            <form (ngSubmit)="saveCompany()" class="js-validate" [formGroup]="formaCompany">
+                <div class="mb-4 text-center">
+                    <h2 class="h4">Información Laboral</h2>
+                </div>
+
+                <div class="js-form-message mb-3">
+                  <input type="text" class="form-control" [(ngModel)]="user.company.company" name="company" [ngClass]="{'is-invalid': !formaCompany.get('company').valid && press }" placeholder="Nombre de la empresa" formControlName="company">
+                  <div class="invalid-feedback">
+                    El Nombre de la empresa es requerido
+                  </div>
+                </div>
+                <div class="js-form-message mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="user.company.nit" name="nit"  [ngClass]="{'is-invalid': !formaCompany.get('nit').valid && press}" placeholder="Nit" formControlName="nit">
+                  <div class="invalid-feedback">
+                    El NIT de la empresa es obligatorio
+                  </div>
+                  <div class="invalid-feedback" *ngIf="formaCompany.get('nit').errors?.pattern">
+                    La NIT solo debe contener numeros
+                  </div>
+                </div>
+
+                <div class="js-form-message mb-3">
+                  <input type="number" class="form-control" [(ngModel)]="user.company.current_salary" name="current_salary"  [ngClass]="{'is-invalid': !formaCompany.get('current_salary').valid && press}" placeholder="Salario actual" formControlName="current_salary">
+                  <div class="invalid-feedback" *ngIf="formaCompany.get('current_salary').errors?.required">
+                    El Salario actual es requerido
+                  </div>
+                  <div class="invalid-feedback" *ngIf="formaCompany.get('current_salary').errors?.pattern">
+                    El valor no es correcto
+                  </div>
+                </div>
+
+                <div class="js-form-message mb-3">
+                  <input type="date" class="form-control" max="{{ dateAd | date:'yyyy-MM-dd' }}"  [(ngModel)]="user.company.admission_date" name="admission_date"  [ngClass]="{'is-invalid': !formaCompany.get('admission_date').valid && press}" placeholder="Fecha de Ingreso" formControlName="admission_date">
+                  <div class="invalid-feedback" *ngIf="formaCompany.get('admission_date').errors?.required">
+                   La fecha de ingreso es obligatoria
+                  </div>
+                </div>
+
+                <button (click)="step = ! step" class="btn btn-secondary ">Atrás</button>
+                <button type="submit" class="btn btn-primary ">Guardar</button>
+
+            </form>
+
+            <div class="alert alert-info mt-2" role="alert" *ngIf="(this.formaCompany.valid)">
+              Datos Procesados correctamente
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

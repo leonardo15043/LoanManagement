@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 
 //Components
 import { AppComponent } from './app.component';
@@ -9,6 +10,10 @@ import { CreditComponent } from './components/credit/credit.component';
 //Routes
 import { APP_ROUTING } from './app.routes';
 
+//Services
+import { HttpModule } from '@angular/http';
+import { UserService } from './services/user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +22,14 @@ import { APP_ROUTING } from './app.routes';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

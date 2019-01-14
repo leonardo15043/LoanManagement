@@ -3,9 +3,9 @@ import { UserComponent } from './components/user/user.component';
 import { CreditComponent } from './components/credit/credit.component';
 
 const APP_ROUTES: Routes = [
-  { path: 'register', component: UserComponent },
+  { path: 'register/:id', component: UserComponent },
   { path: 'credit', component: CreditComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'register' }
+  { path: '**', pathMatch: 'full', redirectTo: 'register/nuevo' }
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
