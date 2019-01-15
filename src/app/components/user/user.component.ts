@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
     name:"",
     lastname:"",
     identification:"",
-    brithday: new Date('00/00/0000'),
+    brithday: null,
     company: {
       company:"",
       nit:"",
@@ -59,41 +59,37 @@ export class UserComponent implements OnInit {
     this.forma = new FormGroup({
       'name': new FormControl('',[ Validators.required ]),
       'lastname': new FormControl('',[ Validators.required ]),
-      'identification': new FormControl('',[ Validators.required , Validators.pattern('[0-9]+')]),
+      'identification': new FormControl('',[ Validators.required , Validators.pattern('[0-9]+' )]),
       'brithday': new FormControl('',[ Validators.required ])
     })
 
     this.formaCompany = new FormGroup({
       'company': new FormControl('',[ Validators.required ]),
       'nit': new FormControl('',[ Validators.required , Validators.pattern('[0-9]+')]),
-      'current_salary': new FormControl('',[ Validators.required , Validators.pattern('[0-9]+')]),
+      'current_salary': new FormControl('',[ Validators.required , Validators.min(1) , Validators.pattern("^([0-9]){0,8}$")]),
       'admission_date': new FormControl('',[ Validators.required ])
     })
 
   }
 
   saveClient(){
+    console.log(this.forma);
     this.press = true;
     if(this.forma.valid){
       this.press = false;
       this.step = false;
-
       if(this.idUser == "nuevo"){
-
         this._userService.newUser(this.user)
           .subscribe(data=>{
              this.router.navigate(['/register',data.name])
           },
           error=> console.error(error));
-
       }else{
-
         this._userService.updateUser(this.user, this.idUser)
           .subscribe( data =>{
             console.log(data);
           },
           error=> console.error(error));
-
       }
 
     }

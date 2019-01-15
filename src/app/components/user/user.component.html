@@ -32,11 +32,12 @@
                 </div>
 
                 <div class="js-form-message mb-3">
-                  <input type="date" class="form-control" min="{{ older | date:'yyyy-MM-dd' }}" [(ngModel)]="user.brithday" name="brithday" [ngClass]="{'is-invalid': !forma.get('brithday').valid && press}" placeholder="Fecha de Nacimiento" formControlName="brithday">
-                  <div class="invalid-feedback" *ngIf="forma.get('brithday').errors?.required">
+                  <input type="date" class="form-control" min="{{ older | date:'yyyy-MM-dd'}}" [(ngModel)]="user.brithday" name="brithday" [ngClass]="{'is-invalid': !forma.get('brithday').touched && press}" placeholder="Fecha de Nacimiento" formControlName="brithday">
+                  <div class="invalid-feedback" *ngIf="!forma.get('brithday').valid">
                    La fecha de nacimiento es obligatoria
                   </div>
                 </div>
+
 
                 <button type="submit" class="btn btn-block btn-primary">Siguiente</button>
 
@@ -66,13 +67,13 @@
                   </div>
                 </div>
 
-                <div class="js-form-message mb-3">
-                  <input type="number" class="form-control" [(ngModel)]="user.company.current_salary" name="current_salary"  [ngClass]="{'is-invalid': !formaCompany.get('current_salary').valid && press}" placeholder="Salario actual" formControlName="current_salary">
+                <div class="js-form-message mb-3 form-group">
+                  <input type="number" class="form-control"  min="1" [(ngModel)]="user.company.current_salary" name="current_salary"  [ngClass]="{'is-invalid': !formaCompany.get('current_salary').valid && press}" placeholder="Salario actual" formControlName="current_salary">
                   <div class="invalid-feedback" *ngIf="formaCompany.get('current_salary').errors?.required">
                     El Salario actual es requerido
                   </div>
-                  <div class="invalid-feedback" *ngIf="formaCompany.get('current_salary').errors?.pattern">
-                    El valor no es correcto
+                  <div class="form-control-feedback" *ngIf="formaCompany.get('current_salary').errors?.pattern">
+                    El valor debe ser menor a $100.000.000
                   </div>
                 </div>
 

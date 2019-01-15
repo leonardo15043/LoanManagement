@@ -12,6 +12,13 @@ input[type="date"]:valid:before {
   content: "";
 }
 
+.form-control-feedback{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
 /* Animaciones */
 .animated {
   -webkit-animation-duration: 1s;
