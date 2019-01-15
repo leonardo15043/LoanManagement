@@ -1,3 +1,15 @@
-<p>
-  credit works!
-</p>
+<h1>Información de Crédito</h1>
+<hr>
+<div class="row">
+  <div class="col-md-8 offset-md-2" >
+    <div class="card text-center">
+      <div class="card-header">
+        <h2>{{ message }}</h2>
+      </div>
+      <div class="card-body" *ngIf="approved_value != 0">
+        <h5 class="card-title">El valor aprobado es de:</h5>
+        <a href="#" class="btn btn-info">{{ approved_value | currency:COP:true:'2.0-3'}}</a>
+      </div>
+    </div>
+  </div>
+</div>

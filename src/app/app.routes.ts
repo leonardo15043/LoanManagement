@@ -4,7 +4,7 @@ import { CreditComponent } from './components/credit/credit.component';
 
 const APP_ROUTES: Routes = [
   { path: 'register/:id', component: UserComponent },
-  { path: 'credit', component: CreditComponent },
+  { path: 'credit/:id', component: CreditComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'register/nuevo' }
 ];
 

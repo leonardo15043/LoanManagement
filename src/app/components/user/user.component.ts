@@ -107,10 +107,9 @@ export class UserComponent implements OnInit {
 
       this._userService.updateUser(this.user, this.idUser)
         .subscribe( data =>{
-          console.log(data);
+          this.router.navigate(['/credit',this.idUser ])
         },
         error=> console.error(error));
-
     }
   }
 

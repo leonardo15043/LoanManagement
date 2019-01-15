@@ -21,7 +21,7 @@ export class UserService {
 
     return this.http.post(this.usersURL, body,{ headers:headers })
     .map( res=>{
-      console.log(res.json());
+      //console.log(res.json());
       return res.json();
     })
   }
@@ -37,7 +37,7 @@ export class UserService {
 
     return this.http.put(url, body,{ headers:headers })
       .map( res=>{
-        console.log(res.json());
+      //  console.log(res.json());
         return res.json();
       })
 
